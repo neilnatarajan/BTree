@@ -3,10 +3,11 @@
 
 
 //constructor 
-BTree::BTree(int order){
+BTree::BTree(int treeOrder){
 	root = new BTNode(order,true);		//the root will initially be a leaf 
 	treeDepth = 0; 						//labeling root as depth 0
 	totalKeys = 0;						//no keys inserted yet 
+	order= treeOrder; 					//make order of the tree accessible 
 }
 
 BTree::~BTree(){
@@ -18,34 +19,58 @@ BTree::~BTree(){
 bool BTree::search(int value){
 
 
-	BTNode * currPtr = root; 
+	BTNode * currPtr = root; 	//ptr node to iterate through the Tree
 
 	bool found = false;			//start assuming value doesn't exist in the tree
 
-	int keysRead = 0; 
+	int keysRead = 0; 			//keep track of total keys Read so far 
+
+
+	//if the node is a leaf and it is still not found then false
 
 
 	while(1){
 		//iterate through the node's keys 
 		for(int i=0;i<currPtr->getNumKeys();i++){
+
 			//if key at index i is equal to value 
 			if(value == currPtr->getKeyAt(i)){
 				found = true; 
 				return found; 
 			}
-			//if key at index i is greater than 
+			//if key at index i is greater than value
+			else if(value < currPtr->getKeyAt(i)){
+			 
+				if(currPtr->isLeafNode()){			//reached leaf without finding
+					found = false; 
+					return found; 
+				}
+				else{								//child exists 
+					currPtr = currPtr->getChildAt(i);
+					break;							//restart while loop for new node 
+				}
+
+			}
+			//if key at index i is less than value 
+			else if(value > currPtr->getKeyAt(i)){
+				//if at end of keys for node then start searching last child 
+				if(i==currPtr->getNumKeys()-1){
+
+					//check to see if leaf
+					if(currPtr->isLeafNode()){
+						//reached end without finding value 
+						found = false; 
+						return found; 
+					}
+					//not leaf - child node exists 
+					currPtr  = currPtr->getChildAt(order-1); 
+					break;							//now restart while loop for new node 
+				}
+				else{
+					continue;						//keep iterating through keys for current node
+				}
+			}
 		}
 	}
-
-	//iterate through root node's keys
-
-		//if found return true
-		//if not found and keysRead == totalKeys 
-			//return false 
-
-		//if value is between keys go to appropriate child 
-			//go to next iteration of the loop 
-
-
 }
 

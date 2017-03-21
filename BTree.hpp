@@ -11,10 +11,11 @@ private:
 	BTNode *root; 
 	int treeDepth; 
 	int totalKeys;
+	int order; 
 
 public: 
 
-	BTree(int order); 				//constructor 
+	BTree(int treeOrder); 				//constructor 
 
 	~BTree(); 						//destructor 
 

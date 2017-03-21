@@ -78,47 +78,6 @@ BTNode* BTNode::getChildAt(int index){
 
 
 
-/*void BTNode::insertKey(int value){
-	if(!isLeaf){
-		//find appropriate range to iterate to child node 
-		int insertIndex=0;
-		for(int i =0; i < keys.size();i++){
-			if(value>)
-
-		}
-
-		//recursively try to insert again in appropriate child node 
-	}
-
-
-	//place the value in the keys vector at appropriate index 
-	for(int i=0;i<keys.size();i++){	
-
-	}
-
-	//check if the node is full 
-	if(getKeys()>maxKeys){
-		//then break the node 
-	}
-
-
-
-	int insertIndex = 0;		//variable to hold the index to insert key 
-
-	//place the value in the appropriate index in the key vector
-	for(int i=0; i<keys.size();i++){
-		if(value > keys[i]){
-			continue;
-		}
-		//if value is less than key[i] then 
-		else if(value < keys[i]){
-			insrtIndex = i; 
-			break;
-		}
-	}
-*/
-//}
-
 
 
 
