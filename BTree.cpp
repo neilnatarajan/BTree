@@ -40,7 +40,7 @@ bool BTree::search(int value){
 			}
 			//if key at index i is greater than value
 			else if(value < currPtr->getKeyAt(i)){
-			 
+			 	
 				if(currPtr->isLeafNode()){			//reached leaf without finding
 					found = false; 
 					return found; 
@@ -54,7 +54,7 @@ bool BTree::search(int value){
 			//if key at index i is less than value 
 			else if(value > currPtr->getKeyAt(i)){
 				//if at end of keys for node then start searching last child 
-				if(i==currPtr->getNumKeys()-1){
+				if(i==((currPtr->getNumKeys())-1)){
 
 					//check to see if leaf
 					if(currPtr->isLeafNode()){
@@ -63,7 +63,10 @@ bool BTree::search(int value){
 						return found; 
 					}
 					//not leaf - child node exists 
-					currPtr  = currPtr->getChildAt(order-1); 
+					int numChild = currPtr->getNumChildren();
+					currPtr  = currPtr->getChildAt(numChild-1); 
+					//std::cout << currPtr->getNumKeys() << std::endl;
+					//std::cout << currPtr->getKeyAt(0) << std::endl;
 					break;							//now restart while loop for new node 
 				}
 				else{
@@ -72,5 +75,9 @@ bool BTree::search(int value){
 			}
 		}
 	}
+}
+
+BTNode* BTree::getRoot(){
+	return root;
 }
 

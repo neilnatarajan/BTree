@@ -46,6 +46,7 @@ BTNode *BTNode::getParent(){
 //method to assign parent to node 
 void BTNode::setParent(BTNode *p){
 	parent = p; 
+	p->addChild(this);
 }
 
 bool BTNode::isLeafNode(){
@@ -76,6 +77,18 @@ BTNode* BTNode::getChildAt(int index){
 	}
 }
 
+void BTNode::addChild(BTNode* c){
+	children.push_back(c);
+}
+
+
+int BTNode::getNumChildren(){
+	return children.size();
+}
+
+void BTNode::setKeys(std::vector<int> values){
+	keys = values;
+}
 
 
 

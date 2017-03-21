@@ -41,6 +41,12 @@ public:
 	
 	BTNode* getChildAt(int index);				//method to return pointer to child node at given index 
 
+	void addChild(BTNode* c);					//method to add a child to the vector children
+
+	int getNumChildren();						//method to return number of children in children vector
+
+	void setKeys(std::vector<int> values);		//test method to see if search works in BTree
+
 };
 
 

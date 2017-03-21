@@ -15,7 +15,7 @@ private:
 
 public: 
 
-	BTree(int treeOrder); 				//constructor 
+	BTree(int treeOrder); 			//constructor 
 
 	~BTree(); 						//destructor 
 
@@ -26,6 +26,8 @@ public:
 	void deleteValue(int value);	//method to delete a given value from the Tree 
 
 	void printTree();				//test method to print tree to console 
+
+	BTNode *getRoot();				//return pointer to root Node 
 };
 
 
