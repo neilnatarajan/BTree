@@ -35,7 +35,9 @@ public:
 
 	void setParent(BTNode *p);					//method to assign parent of node 
 
-	bool isLeafNode();
+	bool isLeafNode();							//method to determine if node is leaf 
+
+	int getKeyAt(int index);					//method to return key at given index
 	
 };
 

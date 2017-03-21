@@ -4,13 +4,13 @@
 //constructor will need the order of the node 
 BTNode::BTNode(int orderTree, bool leafBool){
 	
-	numKeys = 0; 
-	order = orderTree; 
-	isLeaf = leafBool; 
-	maxKeys = order - 1;
+	numKeys = 0; 			//upon creation the node holds no keys
+	order = orderTree; 		//set order of the node 
+	isLeaf = leafBool; 		//set whether node is a leaf or not 
+	maxKeys = order - 1;	//maximum number of keys node can hold 
 
-	//set the parent to NULL 
-	parent = NULL;
+	
+	parent = NULL;			//set the parent to NULL 
 }
 
 //destructor
@@ -54,6 +54,16 @@ bool BTNode::isLeafNode(){
 	}
 	else{
 		return false;
+	}
+}
+
+int BTNode::getKeyAt(int index){
+
+	if((index > keys.size()-1)){		//check for invalid index 
+		return -1; 
+	}
+	else{								//index is valid 
+		return keys[index];
 	}
 }
 
