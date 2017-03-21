@@ -67,6 +67,15 @@ int BTNode::getKeyAt(int index){
 	}
 }
 
+BTNode* BTNode::getChildAt(int index){
+	if((index > children.size()-1)){
+		return NULL;					//check for invalid index 
+	}
+	else{
+		return children[index];
+	}
+}
+
 
 
 /*void BTNode::insertKey(int value){

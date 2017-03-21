@@ -39,6 +39,8 @@ public:
 
 	int getKeyAt(int index);					//method to return key at given index
 	
+	BTNode* getChildAt(int index);				//method to return pointer to child node at given index 
+
 };
 
 
