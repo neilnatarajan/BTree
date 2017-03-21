@@ -2,14 +2,104 @@
 
 
 //constructor will need the order of the node 
-BTNode::BTNode(int orderTree, int leafBool){
+BTNode::BTNode(int orderTree, bool leafBool){
 	
-	numKeys = 0; 					//initially numKeys will be 0
-	order = orderTree; 				//set order of node to passed in value 
-	isLeaf = leafBool;
+	numKeys = 0; 
+	order = orderTree; 
+	isLeaf = leafBool; 
+	maxKeys = order - 1;
 
-	keys = new int[order-1] 		//max keys per node is order - 1
-	children = new BTNode[order]	//max children per node is order 
-
+	//set the parent to NULL 
+	parent = NULL;
 }
+
+//destructor
+BTNode::~BTNode(){
+	//does nothing for now 
+
+	//delete the node's children before deleting the node itself 
+	return; 
+}
+
+
+//method to return the number of keys contained in a node 
+int BTNode::getNumKeys(){
+	numKeys = keys.size();
+	return numKeys; 
+}
+
+//method to return vector object of keys in node 
+std::vector<int> BTNode::getKeys(){
+	return keys;
+}
+
+//method to return vector of child pointers in node 
+std::vector<BTNode*> BTNode::getChildren(){
+	return children;
+}
+
+//method to return parent of node 
+BTNode *BTNode::getParent(){
+	return parent;
+}
+
+//method to assign parent to node 
+void BTNode::setParent(BTNode *p){
+	parent = p; 
+}
+
+bool BTNode::isLeafNode(){
+	if(children.size()==0){
+		return true;
+	}
+	else{
+		return false;
+	}
+}
+
+
+
+/*void BTNode::insertKey(int value){
+	if(!isLeaf){
+		//find appropriate range to iterate to child node 
+		int insertIndex=0;
+		for(int i =0; i < keys.size();i++){
+			if(value>)
+
+		}
+
+		//recursively try to insert again in appropriate child node 
+	}
+
+
+	//place the value in the keys vector at appropriate index 
+	for(int i=0;i<keys.size();i++){	
+
+	}
+
+	//check if the node is full 
+	if(getKeys()>maxKeys){
+		//then break the node 
+	}
+
+
+
+	int insertIndex = 0;		//variable to hold the index to insert key 
+
+	//place the value in the appropriate index in the key vector
+	for(int i=0; i<keys.size();i++){
+		if(value > keys[i]){
+			continue;
+		}
+		//if value is less than key[i] then 
+		else if(value < keys[i]){
+			insrtIndex = i; 
+			break;
+		}
+	}
+*/
+//}
+
+
+
 
