@@ -4,7 +4,7 @@
 
 //constructor 
 BTree::BTree(int treeOrder){
-	root = new BTNode(order,true);		//the root will initially be a leaf 
+	root = new BTNode(treeOrder,true);		//the root will initially be a leaf 
 	treeDepth = 0; 						//labeling root as depth 0
 	totalKeys = 0;						//no keys inserted yet 
 	order= treeOrder; 					//make order of the tree accessible 
@@ -25,6 +25,7 @@ void BTree::insertTree(int value){
 
 	if(currPtr->getNumKeys()==0){
 		//empty tree
+		//std::cout << "value: " << value << std::endl;
 		std::vector<int> tKeys;
 		tKeys.push_back(value); 
 		currPtr->setKeys(tKeys);

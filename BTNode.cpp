@@ -120,9 +120,7 @@ void BTNode::setKeys(std::vector<int> values){
 //method to insert key at node 
 void BTNode::insertKey(int value){
 
-	for(int i  = 0; i < keys.size();i++){
-		std::cout<< "BTNode: " << keys[i] << std::endl;
-	}
+
 	//create iterator to go through vector keys
 	std::vector<int>::iterator it; 
 
@@ -149,9 +147,15 @@ void BTNode::insertKey(int value){
 		}
 	}
 */
+	//std::cout << "keys in this node: " << keys.size() << std::endl;
+	//std::cout << "order of this node: " << order << std::endl; 
+	//int max = order -1; 
+	//std::cout << "maxKeys: " << max << std::endl; 
 
 	//check if node is beyond capacity
 	if(keys.size()>maxKeys){
+		//print out the value
+		std::cout << "key: " << value << " but node full" << std::endl;
 		//insert midPoint into parent node 
 		int midPointIndex = keys.size()/2 - (1 - (keys.size()%2));
 		int midPointKey = keys[midPointIndex];
