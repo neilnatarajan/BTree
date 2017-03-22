@@ -121,16 +121,17 @@ void BTNode::setKeys(std::vector<int> values){
 void BTNode::insertKey(int value){
 
 
-	//create iterator to go through vector keys
-	std::vector<int>::iterator it; 
-
-	for (int i = 0; i < keys.size(); ++i)
+	//insert value in proper location 
+	int loopTimes = keys.size();
+	for (int i = 0; i < loopTimes; i++)
 	{
 		if(value < keys[i]){
 			keys.insert(keys.begin()+i,value);
+			break;
 		}
 		else if(value > keys[i] && i==keys.size()-1){
 			keys.push_back(value);
+			break;
 		}
 	}
 
@@ -145,6 +146,8 @@ void BTNode::insertKey(int value){
 		int midPointIndex = keys.size()/2 - (1 - (keys.size()%2));
 		int midPointKey = keys[midPointIndex];
 	
+		std::cout << "midPoint: " << midPointKey << "," << midPointIndex << std::endl; 
+
 
 		if(parent==NULL){
 			//root is full so no parent exists 
