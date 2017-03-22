@@ -16,7 +16,7 @@ private:
 	std::vector<BTNode*>children;	//vector of ptr's to child nodes 
 	BTNode *parent; 				//mark the parent of this node 
 	bool isLeaf; 					//marker to indicate if node is leaf node 
-	int maxKeys; 
+	int maxKeys; 					//each node can hold only order - 1 keys 
 
 
 
@@ -43,9 +43,13 @@ public:
 
 	void addChild(BTNode* c);					//method to add a child to the vector children
 
+	void insertChild(BTNode* c);				//method to insert a child into proper index of children 
+
 	int getNumChildren();						//method to return number of children in children vector
 
 	void setKeys(std::vector<int> values);		//test method to see if search works in BTree
+
+	void insertKey(int value);					//method to insert key at node 
 
 };
 

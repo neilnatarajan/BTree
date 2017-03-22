@@ -21,7 +21,7 @@ public:
 
 	bool search(int value);			//method to determine if value exists in the tree 
 
-	void insert(int value);			//method to insert values into the BTree 
+	void insertTree(int value);			//method to insert values into the BTree 
 
 	void deleteValue(int value);	//method to delete a given value from the Tree 
 
