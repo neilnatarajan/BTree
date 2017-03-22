@@ -134,28 +134,13 @@ void BTNode::insertKey(int value){
 		}
 	}
 
-/*
-	//insert the value at the appropriate index in the node 
-	for(it = keys.begin(); it < keys.end(); it++){
-		//if the value is less than key at index 
-		if(value < *it){
-			keys.insert(it,value);					//insert the key at index i 
-			break;
-		}
-		else if((value > *it) && (it == keys.end()-1)){
-			keys.push_back(value);
-		}
-	}
-*/
-	//std::cout << "keys in this node: " << keys.size() << std::endl;
-	//std::cout << "order of this node: " << order << std::endl; 
-	//int max = order -1; 
-	//std::cout << "maxKeys: " << max << std::endl; 
 
 	//check if node is beyond capacity
 	if(keys.size()>maxKeys){
-		//print out the value
+		//print out the value for testing 
 		std::cout << "key: " << value << " but node full" << std::endl;
+
+
 		//insert midPoint into parent node 
 		int midPointIndex = keys.size()/2 - (1 - (keys.size()%2));
 		int midPointKey = keys[midPointIndex];
