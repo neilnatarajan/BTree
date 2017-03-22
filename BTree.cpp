@@ -46,6 +46,7 @@ void BTree::insertTree(int value){
 
 				if(currPtr->isLeafNode()){						//found leaf node 
 					currPtr->insertKey(value);
+					root = getRoot();							//update the root of the tree 
 					return; 									//mission accomplished!Break Loop
 				}
 				else{											//keep traversing
@@ -61,6 +62,7 @@ void BTree::insertTree(int value){
 					//check to see if leaf
 					if(currPtr->isLeafNode()){					//found leaf node  
 						currPtr->insertKey(value);
+						root = getRoot();						//update the root of the tree 
 						return; 								//mission accomplished!Break Loop
 					}
 					//not leaf - child node exists 
@@ -140,6 +142,10 @@ bool BTree::search(int value){
 
 
 BTNode* BTree::getRoot(){
+	//iterate to top of the tree
+	while(root->getParent()){
+		root = root->getParent(); 
+	}
 	return root;
 }
 

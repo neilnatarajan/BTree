@@ -150,6 +150,10 @@ void BTNode::insertKey(int value){
 
 
 		if(parent==NULL){
+
+			//test 
+			std::cout << "creating new parent" << std::endl;
+
 			//root is full so no parent exists 
 			BTNode *newRoot = new BTNode(order,false);
 			parent = newRoot;
