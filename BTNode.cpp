@@ -120,9 +120,16 @@ void BTNode::setKeys(std::vector<int> values){
 //method to insert key at node 
 void BTNode::insertKey(int value){
 
-
+	//std::cout << "inserting value " << value << std::endl;
+	
 	//insert value in proper location 
 	int loopTimes = keys.size();
+
+	//acount for empty node 
+	if(loopTimes==0){
+		keys.push_back(value);
+	}
+
 	for (int i = 0; i < loopTimes; i++)
 	{
 		if(value < keys[i]){
@@ -138,21 +145,22 @@ void BTNode::insertKey(int value){
 
 	//check if node is beyond capacity
 	if(keys.size()>maxKeys){
+		
 		//print out the value for testing 
-		std::cout << "key: " << value << " but node full" << std::endl;
+		//std::cout << "key: " << value << " but node full" << std::endl;
 
 
 		//insert midPoint into parent node 
 		int midPointIndex = keys.size()/2 - (1 - (keys.size()%2));
 		int midPointKey = keys[midPointIndex];
 	
-		std::cout << "midPoint: " << midPointKey << "," << midPointIndex << std::endl; 
+		//std::cout << "midPoint: " << midPointKey << "," << midPointIndex << std::endl; 
 
 
 		if(parent==NULL){
 
 			//test 
-			std::cout << "creating new parent" << std::endl;
+			//std::cout << "creating new parent" << std::endl;
 
 			//root is full so no parent exists 
 			BTNode *newRoot = new BTNode(order,false);
