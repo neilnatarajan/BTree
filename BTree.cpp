@@ -25,7 +25,6 @@ void BTree::insertTree(int value){
 
 	if(currPtr->getNumKeys()==0){
 		//empty tree
-		//std::cout << "value: " << value << std::endl;
 		std::vector<int> tKeys;
 		tKeys.push_back(value); 
 		currPtr->setKeys(tKeys);
