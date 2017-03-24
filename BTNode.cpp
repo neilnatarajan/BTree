@@ -11,6 +11,7 @@ BTNode::BTNode(int orderTree, bool leafBool){
 
 	
 	parent = NULL;			//set the parent to NULL 
+	level = 0;				//root is at level 0
 }
 
 //destructor
@@ -45,8 +46,7 @@ BTNode *BTNode::getParent(){
 
 //method to assign parent to node 
 void BTNode::setParent(BTNode *p){
-	parent = p; 
-	//p->addChild(this);
+	parent = p;
 }
 
 //method to determine if node is leaf 
@@ -81,7 +81,7 @@ BTNode* BTNode::getChildAt(int index){
 	}
 }
 
-//method to add child to node 
+//method to add child to end of children in node 
 void BTNode::addChild(BTNode* c){
 	children.push_back(c);
 }
@@ -128,8 +128,10 @@ void BTNode::insertKey(int value){
 	//acount for empty node 
 	if(loopTimes==0){
 		keys.push_back(value);
+		return; 					//key inserted, done
 	}
 
+	//find appropriate index to insert value  
 	for (int i = 0; i < loopTimes; i++)
 	{
 		if(value < keys[i]){
@@ -152,14 +154,13 @@ void BTNode::insertKey(int value){
 
 
 		if(parent==NULL){
-
 			//root is full so no parent exists 
 			BTNode *newRoot = new BTNode(order,false);
 			parent = newRoot;
 			parent->addChild(this);
 		}
 
-		parent->insertKey(midPointKey);				//recursive call to insert midpoint key in parent
+		parent->insertKey(midPointKey);							//recursive call to insert midpoint key in parent
 		
 		//create new node to prep break 
 		BTNode *right = new BTNode(order,isLeaf);
@@ -169,17 +170,15 @@ void BTNode::insertKey(int value){
 		for(int i=midPointIndex+1;i<keys.size();i++){
 			rightKeys.push_back(keys[i]);						//copy over keys for right node 
 		}
-
-		keys.erase(keys.begin()+midPointIndex, keys.end());	//erase keys from current node that go to right
-
+		keys.erase(keys.begin()+midPointIndex, keys.end());		//erase keys from current node that go to right
 
 		right->setKeys(rightKeys);								//set keys 
-		right->setParent(this->parent);							//set the parent of right 
+		right->setParent(parent);								//set the parent of right 
 		(right->parent)->insertChild(right);					//insert right to the children of parent 
 		
 
 		//if node isn't a leaf node then partion the children as well
-		if(this->isLeafNode()==false){
+		if(isLeafNode()==false){
 			for(int i=midPointIndex+1;i < children.size(); i++){
 				right->addChild(children[i]);
 			}
@@ -190,6 +189,20 @@ void BTNode::insertKey(int value){
 
 }
 
+
+int BTNode::getLevel(){
+	BTNode *currPtr = this;
+	int count= 0;
+	while(currPtr->parent){
+		count++;
+		currPtr = currPtr->parent;
+	}
+	return count;
+}
+
+void BTNode::setLevel(int l){
+	level = l;
+}
 
 
 

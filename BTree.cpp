@@ -1,10 +1,11 @@
 #include "BTree.hpp"
+#include <queue> 
 
 
 
 //constructor 
 BTree::BTree(int treeOrder){
-	root = new BTNode(treeOrder,true);		//the root will initially be a leaf 
+	root = new BTNode(treeOrder,true);	//the root will initially be a leaf 
 	treeDepth = 0; 						//labeling root as depth 0
 	totalKeys = 0;						//no keys inserted yet 
 	order= treeOrder; 					//make order of the tree accessible 
@@ -137,6 +138,58 @@ bool BTree::search(int value){
 			}
 		}
 	}
+}
+
+//method to traverse the tree Breadth first and print it out level by level 
+void BTree::printTree(){
+
+	//make sure tree is not empty 
+	if(!root || root->getNumKeys()==0){
+		std::cout << "the tree is empty nothing to traverse." << std::endl;
+	}
+
+	//format for printing out the tree 
+	std::cout << "format: level,child: key(s)" << std::endl;
+
+	//create a datastructure to hold nodes for Breadth First Traversal 
+	std::queue<BTNode*> printQueue; 
+
+	//create pointer to Iterate through the tree 
+	BTNode *currPtr = root; 
+	int lv = currPtr->getLevel();
+	int c = 0;
+
+	//add the pointer to the queue 
+	printQueue.push(currPtr);
+
+	//loop through the queue 
+	while(!printQueue.empty()){
+		BTNode *curr = printQueue.front();
+		printQueue.pop();
+
+		//add the children to the queue
+		for (int i = 0; i < curr->getNumChildren(); i++)
+		{
+			printQueue.push(curr->getChildAt(i));
+		}
+
+		if (curr->getLevel() > lv)			//reached new level in the tree 
+		{	
+			lv = curr->getLevel();	
+			std::cout << std::endl;
+			c = 0;
+		}
+		std::cout << curr->getLevel() << ',' << c << ": "; 
+		for (int i = 0; i < curr->getNumKeys(); ++i)
+		{
+			std::cout << curr->getKeyAt(i) << ' ';
+		}
+		if(!printQueue.empty()){
+			std::cout <<"	";
+		}
+		c++;
+	}
+	std::cout << std::endl;
 }
 
 

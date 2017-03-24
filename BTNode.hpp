@@ -17,6 +17,7 @@ private:
 	BTNode *parent; 				//mark the parent of this node 
 	bool isLeaf; 					//marker to indicate if node is leaf node 
 	int maxKeys; 					//each node can hold only order - 1 keys 
+	int level; 
 
 
 
@@ -50,6 +51,10 @@ public:
 	void setKeys(std::vector<int> values);		//test method to see if search works in BTree
 
 	void insertKey(int value);					//method to insert key at node 
+
+	int getLevel();								//accessor method to get level of node 
+
+	void setLevel(int l);						//set level of node 
 
 };
 
