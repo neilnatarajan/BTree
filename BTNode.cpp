@@ -178,9 +178,11 @@ void BTNode::insertKey(int value){
 		
 
 		//if node isn't a leaf node then partion the children as well
-		if(isLeafNode()==false){
+		if(isLeafNode()==false){			
 			for(int i=midPointIndex+1;i < children.size(); i++){
 				right->addChild(children[i]);
+				children[i]->setParent(right);
+				
 			}
 			children.erase(children.begin()+midPointIndex+1,children.end());
 		}

@@ -184,7 +184,11 @@ void BTree::printTree(){
 		{
 			std::cout << curr->getKeyAt(i) << ' ';
 		}
+		if(curr->getParent()){
+			std::cout << " from p containing: " << curr->getParent()->getKeyAt(0);
+		}
 		if(!printQueue.empty()){
+			
 			std::cout <<"	";
 		}
 		c++;
